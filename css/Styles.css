@@ -1,0 +1,203 @@
+﻿html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
+html{
+   
+}
+body {
+  padding-top: 50px;
+  background-color:darkgray;
+}
+form{
+    height:100%;
+}
+
+/*Front Page*/
+
+
+
+.slider {
+    width: 800px;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    background: #e6e6e6;
+    border: 20px solid #FFF;
+    margin-top: 20px;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+     height: 100%;
+    width: 80%;
+    left:75px;
+}
+.sliderImg{
+    height: 100%;
+    width: 80%;
+    margin-left: 10%;
+  
+    
+}
+
+
+
+.slideDescription{
+    position:absolute;
+    height:30%;
+    width:74%;
+    top:0;
+    margin-left:11%;
+    opacity:0;
+    background-color:black;
+    color:white;
+    margin-top:0;
+}
+
+
+/*---------------------------------------------------------
+NAV
+---------------------------------------------------------*/
+.arrow {
+    position: absolute;
+    z-index: 1002;
+    display: block;
+    top: 50%;
+    margin-top: -35px;
+    width: 36px;
+    height: 71px;
+    outline: none;
+    cursor: pointer;
+    background: url(../assets/img/blank.gif) no-repeat;
+}
+
+.arrow.prev {
+    opacity: 0.5;
+    left: 20px;
+    background-image: url(../assets/img/paddle_prev_999.png);
+    transition: 0.2s linear all;
+}
+
+.arrow.next {
+    opacity: 0.5;
+    right: 20px;
+    background-image: url(../assets/img/paddle_next_999.png);
+    transition: 0.2s linear all;
+}
+
+.arrow.prev:hover {
+    opacity: 1;
+    background-image: url(../assets/img/paddle_prev_fff.png);
+}
+
+.arrow.next:hover {
+    opacity: 1;
+    background-image: url(../assets/img/paddle_next_fff.png);
+}
+
+.navPannelLeft{
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:75px;
+    background-color:black;
+    float:left;
+    opacity:.7;
+}
+.navPannelRight{
+    position:absolute;
+    top:0;
+    right:0;
+    height:100%;
+    width:75px;
+    background-color:black;
+    opacity:.7;
+    
+}
+
+.navPannelLeft, .navPannelRight {
+  -webkit-transition:all linear .4s;
+  transition:all linear .4s;
+}
+
+.navPannelLeft.ng-hide, .navPannelRight.ng-hide {
+  opacity:0;
+}
+
+.navFront {
+    text-align: center;
+    display: block;
+    position: absolute;
+    z-index: 1002;
+    left: 0;
+    bottom: -4px;
+    right: 0;
+    height: 48px;
+}
+
+.nonDraggableImage{
+    -webkit-user-drag: none;
+}
+
+.navFront .wrapper {
+    margin: 0 auto;
+    width: 100%;
+    padding: 1em 0 .8em;
+}
+
+.navFront ul {
+    margin: 0;
+    width: 100%;
+}
+
+.navFront .dot, .nav .dot a {
+    display: inline-block;
+    zoom: 1;
+}
+
+.dots .dot {
+    position: relative;
+    margin: 0 8px;
+    width: 12px;
+    height: 12px;
+}
+
+.dots .dot a {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 6px;
+    height: 6px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    background: #FFF;
+    border: 1px solid black;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transition: background-color 0.25s, border-color 0.25s;
+    -moz-transition: background-color 0.25s, border-color 0.25s;
+    transition: background-color 0.25s, border-color 0.25s;
+}
+
+.dots .dot a.active {
+    border-color: #FFF;
+    background-color: transparent;
+    border: 1px solid blue;
+}
+
+
+/*End NAV*/
+/*End front page*/
+

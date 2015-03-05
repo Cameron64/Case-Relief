@@ -1,0 +1,62 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="css/Styles.css" type="text/css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/ngStorage.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular-animate.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
+    <script src="js/magic.js"></script>
+
+    <title>Case Relief</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body ng-app="disasterSite" >
+
+
+
+    <form id="form1" runat="server">
+
+          <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+
+        <div class="navbar-header" ng-controller="TabController">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="Default.aspx">Case Relief</a>
+        </div>
+
+
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li ng-class="{ 'active': $storage.home, '': !$storage.home }"  ><a ng-click="$storage.home = 1;" href="Default.aspx">Home</a></li>
+            <li ng-class="{ 'active': $storage.about, '': !$storage.about }" ><a ng-click="$storage.about = 1;" href="About Us.aspx">About Us</a></li>
+            <li ng-class="{ 'active': $storage.contact, '': !$storage.contact }"><a ng-click="$storage.contact = 1;" href="Contact.aspx">Contact Us</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+
+
+      </div>
+    </nav>
+
+    
+        
+   
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+       
+    </form>
+</body>
+</html>
