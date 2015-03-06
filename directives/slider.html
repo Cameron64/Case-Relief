@@ -2,7 +2,7 @@
 
 <div ng-app="ngAnimate" class="container slider" ng-mouseover="showNavPannelLeft = true; showNavPannelRight = true;" ng-mouseleave="showNavPannelLeft =false; showNavPannelRight = false">
     
-    <img ng-repeat="slide in album" class="slide slide-animation"
+    <img ng-repeat="slide in album" ng-init="startInterval()" class="slide slide-animation"
          ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
 
     
@@ -23,4 +23,6 @@
             </ul>
         </div>
     </nav>
+
+    <div ng-repeat="slide in album" ng-hide="!isCurrentSlideIndex($index)" class="slideDescription text-center"><h4>{{slide.description}}</h4></div>
 </div>

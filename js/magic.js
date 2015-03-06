@@ -14,13 +14,15 @@
     app.directive('carousel', function(){
         return{
             restrict: 'E',
-            templateUrl: 'slider.html',
-            controller: function($scope){
+            templateUrl: 'directives/slider.html',
+            controller: function($scope, $interval){
                 $scope.album = [
                                 { image: "img/phones/1.jpg", description: "On Sale Now" },
                                 { image: "img/phones/2.jpg", description: "Our Strongest case yet" },
                                 { image: "img/phones/3.jpg", description: "Strong and Beautiful, all at once"}
                 ];
+                $scope.showNavPannelLeft = false;
+                $scope.showNavPannelRight = false;
                 $scope.direction = 'left';
                 $scope.currentIndex = 0;
                 
@@ -34,29 +36,21 @@
                 };
 
                 $scope.prevSlide = function () {
-                    $scope.direction = 'left';
+                    $scope.direction = 'right';
                     $scope.currentIndex = ($scope.currentIndex == 0) ? $scope.album.length - 1 : --$scope.currentIndex;
                 
                 };
                 
                 $scope.nextSlide = function () {
-                    $scope.direction = 'right';
+                    $scope.direction = 'left';
                     $scope.currentIndex = ($scope.currentIndex < $scope.album.length - 1) ? ++$scope.currentIndex : 0 ;
                     
                 };
 
-                $scope.showNavPannelLeft = false;
-                $scope.showNavPannelRight = false;
-                
-            }
-                
+                }
         }
 
-        
     });
-   
-
-     
 
     app.animation('.slide-animation', function () {
         return {
@@ -68,7 +62,7 @@
                     if (scope.direction !== 'right') {
                         finishPoint = -finishPoint;
                     }
-                    TweenMax.to(element, .5, { left: finishPoint, onComplete: done });
+                    TweenMax.to(element, .25, { left: finishPoint, onComplete: done });
                 }
                 else {
                     done();
@@ -85,7 +79,7 @@
                         startPoint = -startPoint;
                     }
 
-                    TweenMax.fromTo(element, 0.5, { left: startPoint }, { left: 75, onComplete: done });
+                    TweenMax.fromTo(element, 0.25, { left: startPoint }, { left: 75, onComplete: done });
                 }
                 else {
                     done();
@@ -94,7 +88,23 @@
         };
     });
         
+    app.directive('reviews', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'directives/reviews.html',
+            controller: function ($scope) {
 
+                $scope.reviews = [
+                    { name: "CNN", photo: "img/reviews/cnn.jpg", title: "Charity Will Never be the Same", review: "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Ipsum " },
+                    { name: "BBC News", photo: "img/reviews/bbc.jpg", title: "Charity Will Never be the Same", review: "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum  Ipsum " },
+                    { name: "Forbes Magazine", photo: "img/reviews/forbes.jpg", title: "Charity Will Never be the Same", review: "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsumem Ipsum " }
+
+
+                ]
+
+            }
+        }
+    });
 
 
    

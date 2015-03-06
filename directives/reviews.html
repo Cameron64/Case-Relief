@@ -1,0 +1,19 @@
+﻿<div class="table-responsive" style="width:80%;margin-left:10%;margin-top:150px;">
+    <table class="table">
+        <tbody>
+            <tr ng-repeat="review in reviews">
+
+                <td>
+                    <img style="width:90%;" ng-src="{{review.photo}}" />
+                </td>
+                
+                <td  >
+                    <h4>{{review.title}}</h4>
+                    {{review.review}}
+                </td>
+
+
+            </tr>
+        </tbody>
+    </table>
+</div>

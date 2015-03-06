@@ -6,12 +6,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    <div class="container-fluid" style="background-color:white;width:80%;height:100%;">
+    <div class="container-fluid" style="background-color:white;width:80%;bottom:0;">
     
+        <div style="margin-top:50px;">
   <carousel></carousel>
-        
+        </div>
 
-
+        <reviews></reviews>
 
 
         </div>
