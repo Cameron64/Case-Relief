@@ -106,7 +106,31 @@
         }
     });
 
+    app.directive('shop', function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'directives/shop.html',
+            controller: function ($scope, $window) {
+            }
+        }
+    });
 
+    app.controller('shopping', function ($scope,$window) {
+        $scope.dataRecieved1 = transcribe1($window.dr);
+        $scope.dataRecieved = JSON.parse($scope.dataRecieved1 );
+       
+        function transcribe1(array) {
+            array2 = "";
+            for (var i = 0; i < array.length; i++) {
+                if (array.charAt(i) == "'") {
+                    array2 += '"';
+                } else {
+                    array2 += array.charAt(i);
+                }
+            }
+            return array2;
+        }
+    });
    
 
 })();
