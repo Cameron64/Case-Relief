@@ -117,7 +117,9 @@
 
     app.controller('shopping', function ($scope,$window) {
         $scope.dataRecieved1 = transcribe1($window.dr);
-        $scope.dataRecieved = JSON.parse($scope.dataRecieved1 );
+        $scope.dataRecieved = JSON.parse($scope.dataRecieved1);
+        console.log($scope.dataRecieved1);
+        $scope.dataLength = $scope.dataRecieved.length;
        
         function transcribe1(array) {
             array2 = "";

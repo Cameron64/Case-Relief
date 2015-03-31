@@ -1,0 +1,5 @@
+Team.Net
+
+ADMIN ID: TeamNetAdmin	PASSWORD:  63R1AQK9w
+USER ID: ECUser		PASSWORD: 10nrszMoc1
+DATABASE: TeamNet  	SERVER: mimas.itds.unt.edu

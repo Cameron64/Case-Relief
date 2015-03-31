@@ -6,7 +6,6 @@
 
     <div class="container-fluid" style="background-color:white;width:80%;height:100%;">
 
-    I can't code this dude. -Mark Fuertes
 
 </asp:Content>
 

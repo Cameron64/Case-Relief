@@ -17,6 +17,9 @@
             {{data.Password}}
         </div>
             </div>
+        <div style="position:relative;float:left;bottom:0;color:red;font-size:20px;">
+            {{dataLength}} Records Found
+        </div>
         <asp:Label runat="server" id="Message"></asp:Label>
         </div>
 
