@@ -17,12 +17,7 @@ public partial class Registration : System.Web.UI.Page
     }
 
     protected void submit_Click(object sender, EventArgs e)
-    {
-
-        int thisYear = DateTime.Today.Year;
-        int userYear;
-        int diff;
-        
+    {        
         string pattern = @"^[a-z][a-z|0-9|]*([_][a-z|0-9]+)*([.][a-z|0-9]+([_][a-z|0-9]+)*)?@[a-z][a-z|0-9|]*\.([a-z][a-z|0-9]*(\.[a-z][a-z|0-9]*)?)$";
         Match match = Regex.Match(email.Text.Trim(), pattern, RegexOptions.IgnoreCase);
         
@@ -52,38 +47,8 @@ public partial class Registration : System.Web.UI.Page
             error.Text = "Password cannot be blank";
             return;
         }
-        if (yearOfBirth.Text == "")
-        {
-            error.Text = "Year of birth cannot be blank";
-            return;
-        }
-        
-        if (!System.Text.RegularExpressions.Regex.IsMatch(yearOfBirth.Text, "^[0-9]*$"))
-        {
-            error.Text = "Year of birth must only be numbers";
-            return;
-        }
-        else
-        {
-            userYear = int.Parse(yearOfBirth.Text);
-            diff = thisYear - userYear;
-        }
-        if (diff < 18 && diff > 0)
-        {
-                error.Text = ("You are " + diff.ToString() + " years old and not old enough to register");
-                return;
-        }
-        if (diff <= 0)
-        {
-            error.Text = ("You are too " + diff.ToString() + " years old and not yet born. Because of this, you may not register");
-            return;
-        }
-        if (diff > 126)
-        {
-            error.Text = ("You are too " + diff.ToString() + " years old and too old to register");
-            return;
-        }
 
+        String admin = "yes";
 
         SqlConnection myConnection = new SqlConnection(SqlDataSource1.ConnectionString);
         SqlCommand myCommand = new SqlCommand(SqlDataSource1.InsertCommand);
@@ -92,7 +57,8 @@ public partial class Registration : System.Web.UI.Page
         myCommand.Parameters.AddWithValue("@returnPassword", password.Text);
         myCommand.Parameters.AddWithValue("@returnFName", fName.Text);
         myCommand.Parameters.AddWithValue("@returnLName", lName.Text);
-        myCommand.Parameters.AddWithValue("@returnYoB", yearOfBirth.Text);
+        myCommand.Parameters.AddWithValue("@admin", admin);
+
         SqlDataReader myReader;
         myConnection.Open();
         myReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);

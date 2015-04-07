@@ -11,14 +11,14 @@ public partial class Login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        
     }
 
     protected void submit_Click(object sender, EventArgs e)
     {
         String ReturnEmail = "";
         String ReturnPassword = "";
-        int ReturnYoB = 0;
+        String Admin = "";
         SqlDataReader MyReader;
 
         SqlConnection myConnection = new SqlConnection(SqlDataSource1.ConnectionString);
@@ -32,7 +32,7 @@ public partial class Login : System.Web.UI.Page
         {
             ReturnEmail = MyReader.GetString(2).Trim() + " " + MyReader.GetString(3).Trim();
             ReturnPassword = MyReader.GetString(1).Trim();
-            ReturnYoB = MyReader.GetInt32(4);
+            Admin = MyReader.GetString(4);
         }
         myConnection.Close();
         if (UserPassword.Text == "" || UserEmail.Text == "")
@@ -40,8 +40,8 @@ public partial class Login : System.Web.UI.Page
         else if (UserPassword.Text.Trim() == ReturnPassword)
         {
             Session["SessionEmail"] = UserEmail.Text.Trim();
-            Session["YoB"] = ReturnYoB;
             Session["authenticated"] = "true";
+            Session["Admin"] = Admin;
             Response.Redirect("http://ecom.unt.edu/TeamNet");
         }
         else

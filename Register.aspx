@@ -15,7 +15,7 @@
            
   </div>
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
+    <label for="Email Input">Email address</label>
     <asp:TextBox runat="server" type="text" CssClass="form-control" ID="email"  placeholder="Enter email"/>
 
   </div>
@@ -27,28 +27,22 @@
     <label for="Password Confirmation">Confirm Password</label>
     <asp:TextBox runat="server" type="password" class="form-control" ID="passwordConfirm"  placeholder="Password"/>
   </div>
-  
-    <div class="form-group">
-    <label for="Year of Birth">Year of Birth</label>
-    <asp:TextBox runat="server" type="text" CssClass="form-control" ID="yearOfBirth"  placeholder="Must be Over 18"/>
-           
-  </div>
 
   <asp:Button OnClick="submit_Click" runat="server" type="submit" class="btn btn-default" text="submit"></asp:Button>
     <asp:Label style="color:red" runat="server" id="error"></asp:Label>
          </div>
     </div>
 
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues"   ConnectionString="<%$ ConnectionStrings:CredentialConnection %>" 
-     InsertCommand="INSERT INTO [Users] (Email, Password, FName, LName, YoB) VALUES (@returnEmail, @returnPassword, @returnFName, @returnLName, @returnYob)"
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues"   ConnectionString="<%$ ConnectionStrings:UserConnection %>" 
+     InsertCommand="INSERT INTO [Users] (Email, Password, FName, LName, Admin) VALUES (@returnEmail, @returnPassword, @returnFName, @returnLName, @admin)"
      OldValuesParameterFormatString="original_{0}" 
-     ProviderName="<%$ ConnectionStrings:CredentialConnection %>">
+     ProviderName="<%$ ConnectionStrings:UserConnection %>">
         <InsertParameters>
             <asp:Parameter Name="Email" Type="String" />
             <asp:Parameter Name="Password" Type="String" />
             <asp:Parameter Name="FName" Type="String" />
             <asp:Parameter Name="LName" Type="String" />
-            <asp:Parameter Name="YoB" />
+            <asp:Parameter Name="Admin" />
         </InsertParameters>
      </asp:SqlDataSource>
 

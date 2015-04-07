@@ -115,7 +115,7 @@
         }
     });
 
-    app.controller('shopping', function ($scope,$window) {
+    app.controller('shopping', function ($scope,$window,$filter) {
         $scope.dataRecieved1 = transcribe1($window.dr);
         $scope.dataRecieved = JSON.parse($scope.dataRecieved1);
         console.log($scope.dataRecieved1);
@@ -132,7 +132,47 @@
             }
             return array2;
         }
+
+        $filter('truncate');
+        $filter('range');
+        $scope.stars = function (n) {
+            $scope.result = "";
+            for (i = 0; i < n; i++) {
+                $scope.result += "<img src='assets/site/stars/star.png' />"
+            }
+        }
+            
+                
     });
    
+    app.filter('range', function () {
+        return function (input, total) {
+            total = parseInt(total);
+            for (var i = 0; i < total; i++)
+                input.push(i);
+            return input;
+        };
+    });
+
+    function Main($scope) {
+    }
+    app.filter('truncate', function () {
+        return function (text, length, end) {
+            if (isNaN(length))
+                length = 10;
+
+            if (end === undefined)
+                end = "...";
+
+            if (text.length <= length || text.length - end.length <= length) {
+                return text;
+            }
+            else {
+                return String(text).substring(0, length - end.length) + end;
+            }
+
+        };
+    });
+
 
 })();

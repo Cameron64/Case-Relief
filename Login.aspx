@@ -17,8 +17,9 @@
   <asp:Button OnClick="submit_Click" runat="server" type="submit" class="btn btn-default" text="submit"></asp:Button>
     <asp:Label runat="server" id="ErrorMessage"></asp:Label>
     </div>
+           
             </div>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server"  ConnectionString="<%$ ConnectionStrings:CredentialConnection %>" SelectCommand="SELECT [Email], [Password], [FName], [LName], [YoB] FROM [User] WHERE (([Email] = @UserEmail) AND ([Password] = @UserPassword))">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server"  ConnectionString="<%$ ConnectionStrings:UserConnection %>" SelectCommand="SELECT [Email], [Password], [FName], [LName], [Admin] FROM [users] WHERE (([Email] = @UserEmail) AND ([Password] = @UserPassword))">
         <SelectParameters>
             <asp:Parameter Name="Email" Type="String" />
             <asp:Parameter Name="Password" Type="String" />
