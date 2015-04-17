@@ -115,10 +115,10 @@
         }
     });
 
-    app.controller('shopping', function ($scope,$window,$filter) {
+    app.controller('shopping', function ($scope,$window,$filter,$localStorage) {
         $scope.dataRecieved1 = transcribe1($window.dr);
         $scope.dataRecieved = JSON.parse($scope.dataRecieved1);
-        console.log($scope.dataRecieved1);
+       // console.log($scope.dataRecieved1);
         $scope.dataLength = $scope.dataRecieved.length;
        
         function transcribe1(array) {
@@ -133,18 +133,80 @@
             return array2;
         }
 
-        $filter('truncate');
         $filter('range');
-        $scope.stars = function (n) {
-            $scope.result = "";
-            for (i = 0; i < n; i++) {
-                $scope.result += "<img src='assets/site/stars/star.png' />"
+        
+            
+        $scope.selectedStars = 1;
+
+        $scope.$storage = $localStorage.$default({
+            products: []
+           
+        });
+
+        $scope.getBasketIndex = function (arr, value) {
+
+            for (var i = 0, iLen = arr.length; i < iLen; i++) {
+
+                if (arr[i].Name == value) return i;
             }
         }
-            
-                
+
+        $scope.toCheckOut = function () {
+            window.location = "Cart.aspx";
+        }
     });
    
+
+    app.controller('cart', function ($scope, $localStorage) {
+
+        $scope.$storage = $localStorage.$default({
+            products: []
+            
+
+        });
+        $scope.standard = 3.15;
+        $scope.expedited = 5.49;
+        $scope.prices = [{ name: 'Standard', price: 3.15 }, { name: 'expedited', price: 5.49 }];
+        $scope.subTotal = function () {
+            var total = $scope.total($scope.$storage.products);
+            return total / 8.25 + total;
+        }
+        $scope.grandTotal = function () {
+            console.log($scope.subTotal() + $scope.shipping);
+            return $scope.subTotal() + $scope.shipping.price;
+        }
+         $scope.getBasketIndex = function (arr, value) {
+
+            for (var i = 0, iLen = arr.length; i < iLen; i++) {
+
+                if (arr[i].Name == value) return i;
+            }
+         }
+
+         $scope.toPay = function () {
+             
+                 window.location = "BillingInfo.aspx";
+             
+         }
+
+         $scope.total = function (arr) {
+             var returnTotal = 0;
+             for (var i = 0, iLen = arr.length; i < iLen; i++) {
+
+                 returnTotal += arr[i].Price * arr[i].Quantity;
+             }
+             return returnTotal;
+         }
+        
+    });
+
+    app.controller('bill', function ($scope, $localStorage) {
+
+
+    });
+
+
+
     app.filter('range', function () {
         return function (input, total) {
             total = parseInt(total);
@@ -156,23 +218,9 @@
 
     function Main($scope) {
     }
-    app.filter('truncate', function () {
-        return function (text, length, end) {
-            if (isNaN(length))
-                length = 10;
-
-            if (end === undefined)
-                end = "...";
-
-            if (text.length <= length || text.length - end.length <= length) {
-                return text;
-            }
-            else {
-                return String(text).substring(0, length - end.length) + end;
-            }
-
-        };
-    });
-
+    
+    app.controller('billing',['$scope','$window', function ($scope,$window) {
+       
+    }]);
 
 })();

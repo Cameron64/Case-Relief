@@ -7,13 +7,12 @@ using System.Web.Security;
 using System.Data;
 using System.Data.SqlClient;
 
-public partial class Login : System.Web.UI.Page
+public partial class Default2 : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        ErrorMessage.Text = "Your session expired before you submitted your form, please log back in to return";
     }
-
     protected void submit_Click(object sender, EventArgs e)
     {
         String ReturnEmail = "";
@@ -42,7 +41,7 @@ public partial class Login : System.Web.UI.Page
             Session["SessionEmail"] = UserEmail.Text.Trim();
             Session["authenticated"] = "true";
             Session["Admin"] = Admin;
-            Response.Redirect("http://ecom.unt.edu/TeamNet");
+            Response.Redirect("Billing.aspx");
         }
         else
         {

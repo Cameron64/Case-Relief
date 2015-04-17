@@ -9,6 +9,7 @@
          <div class="form-group" style="margin-top:20px">
              HOW TO ADD PHONES:
            <br />
+             <h3>NO APOSTROPHES</h3>
              Name: Normal, just put in the name
              <br />
              Model: Normal

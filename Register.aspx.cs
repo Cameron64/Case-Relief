@@ -48,7 +48,7 @@ public partial class Registration : System.Web.UI.Page
             return;
         }
 
-        String admin = "yes";
+        String admin = "no";
 
         SqlConnection myConnection = new SqlConnection(SqlDataSource1.ConnectionString);
         SqlCommand myCommand = new SqlCommand(SqlDataSource1.InsertCommand);

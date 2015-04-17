@@ -4,7 +4,24 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-   <link rel="shortcut icon" type="image/x-icon" href="assets/site/favicon/favicon.ico"/>
+  
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png"/>
+<link rel="apple-touch-icon" sizes="60x60" href="assets/site/favicon/apple-icon-60x60.png"/>
+<link rel="apple-touch-icon" sizes="72x72" href="assets/site/favicon/apple-icon-72x72.png"/>
+<link rel="apple-touch-icon" sizes="76x76" href="assets/site/favicon/apple-icon-76x76.png"/>
+<link rel="apple-touch-icon" sizes="114x114" href="assets/site/favicon/apple-icon-114x114.png"/>
+<link rel="apple-touch-icon" sizes="120x120" href="assets/site/favicon/apple-icon-120x120.png"/>
+<link rel="apple-touch-icon" sizes="144x144" href="assets/site/favicon/apple-icon-144x144.png"/>
+<link rel="apple-touch-icon" sizes="152x152" href="assets/site/favicon/apple-icon-152x152.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="assets/site/favicon/apple-icon-180x180.png"/>
+<link rel="icon" type="image/png" sizes="192x192"  href="assets/site/favicon/android-icon-192x192.png"/>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/site/favicon/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="96x96" href="assets/site/favicon/favicon-96x96.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="assets/site/favicon/favicon-16x16.png"/>
+<link rel="manifest" href="assets/site/favicon/manifest.json"/>
+<meta name="msapplication-TileColor" content="#ffffff"/>
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png"/>
+<meta name="theme-color" content="#ffffff"/> 
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="css/Styles.css" type="text/css"/>
     <script src="js/jquery-1.11.2.min.js"></script>
@@ -42,7 +59,8 @@
             <li ng-class="{ 'active': $storage.home, '': !$storage.home }"  ><a ng-click="$storage.home = 1;" href="Default.aspx">Home</a></li>
             <li ng-class="{ 'active': $storage.about, '': !$storage.about }" ><a ng-click="$storage.about = 1;" href="AboutUs.aspx">About Us</a></li>
             <li ng-class="{ 'active': $storage.contact, '': !$storage.contact }"><a ng-click="$storage.contact = 1;" href="Contact.aspx">Contact Us</a></li>
-              <li> <a href="Login.aspx">Login</a></li>
+            <li><a href="Shopping.aspx">Shop</a></li>
+            <li> <a href="Login.aspx">Login / Register</a></li>
           </ul>
         </div><!--/.nav-collapse -->
 
@@ -50,7 +68,7 @@
       </div>
     </nav>
 
-    
+    <script>//var sessionElement = "";</script>
         
    
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
