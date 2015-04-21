@@ -164,9 +164,8 @@
             
 
         });
-        $scope.standard = 3.15;
-        $scope.expedited = 5.49;
-        $scope.prices = [{ name: 'Standard', price: 3.15 }, { name: 'expedited', price: 5.49 }];
+       
+        $scope.prices = [{ name: 'Standard ($3.15)', price: 3.15 }, { name: 'Expedited ($5.49)', price: 5.49 }];
         $scope.subTotal = function () {
             var total = $scope.total($scope.$storage.products);
             return total / 8.25 + total;
@@ -182,7 +181,11 @@
                 if (arr[i].Name == value) return i;
             }
          }
-
+         for (var i = 0; i < $scope.prices.length; i++) {
+             if ($scope.prices[i].name == 'Standard ($3.15)') {
+                 $scope.shipping = $scope.prices[i];
+             }
+         }
          $scope.toPay = function () {
              
                  window.location = "BillingInfo.aspx";
@@ -222,5 +225,27 @@
     app.controller('billing',['$scope','$window', function ($scope,$window) {
        
     }]);
+    app.controller('thankYou', ['$scope', '$window', '$localStorage', function ($scope, $window,$localStorage) {
+        $scope.$storage = $localStorage.$default({
+            products: []
+        });
+        $scope.response = "";
+        $scope.getService = function () {
+          
+            $.ajax({
+                type: "POST",
+                url: "ThankYou.aspx/Process",
+                data: JSON.stringify({ 'Product': $scope.$storage.products }),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                async: true,
+                cache: false,
+                success: function (e, f) { console.log(e); console.log(f); },
+                error: function (req,e) { $scope.response = "Fail"; console.log( req); }
+            })
+            return false;
 
+        };
+    
+    }]);
 })();

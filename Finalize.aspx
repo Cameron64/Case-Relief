@@ -5,9 +5,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
 
-    <div class="container-fluid" style="background-color:white;width:80%;bottom:0;" ng-controller="cart">
+    <div class="container-fluid" style="background-color:white;width:80%;bottom:0;position:relative;" ng-controller="cart">
    <div style="border:solid black 1px;width:300px;margin-top:10px;margin-bottom:10px;">
-       <div style="margin-right:auto;margin-left:auto;width:80%;">
+       <div style="margin-right:auto;margin-left:auto;width:80%;margin-bottom:20px;">
        <h2>Shipping Address</h2>
        <div style="font-size:18px;font-weight:500;display:inline;">Address:</div>
        <asp:Label ID="FAddress" runat="server" ></asp:Label>
@@ -20,7 +20,7 @@
            </div>
    </div>
         
-                        <table class="table table-hover" ng-hide="0 >= $storage.products.length">
+                        <table class="table table-hover" style="position:relative;" ng-hide="0 >= $storage.products.length">
                  <tr>   
                      <th>Name</th>
                      <th>Price</th>
@@ -37,38 +37,40 @@
 
      <tr>
          <td><h3>TOTAL:</h3></td>
-         <td style="float:right;" ng-model="beforeTax"><h3>{{total($storage.products) | currency}}</h3></td>
+         <td>&nbsp</td><td>&nbsp</td>
+         <td class="totalsRight" ng-model="beforeTax"><h3>{{total($storage.products) | currency}}</h3></td>
      </tr>
      <tr>
          <td><h3>Tax:</h3></td>
-         <td><h3><div style="float:right;" ng-model="tax">8.25%</div></h3></td>
+         <td>&nbsp</td>
+         <td><div class="totalsRight" ng-model="tax"><h3>8.25%</h3></div></td>
      </tr>
      <tr>
          <td><h3>Sub TOTAL:</h3></td>
-         <td style="float:right;"  ><h3>{{subTotal() | number:2 | currency}}</h3></td>
+         <td>&nbsp</td><td>&nbsp</td>
+         <td class="totalsRight"><h3>{{subTotal() | number:2 | currency}}</h3></td>
      </tr>
      <tr>
          <td><h3>Shipping:</h3></td>
-         <td><h3><div style="float:right;">
-             <select style="height:50px;width:200px;" ng-model="shipping">
-  
-        <option ng-repeat="type in prices" value="{{type.price}}">{{type.name}}</option>
-
-</select>
+         <td>&nbsp</td>
+         <td style="padding:0;"><h3><div class="totalsRight">
+             <select style="height:50px;width:225px;" ng-model="shipping" ng-options="type.name for type in prices">
+      </select>
                  </div></h3></td>
      </tr>
-     <tr>
+     <tr style="margin-top:20px;">
          <td>
-             <h3>GRAND TOTAL:</h3>
+             <h2 style="margin-top:50px;margin-bottom:50px;">GRAND TOTAL:</h2>
          </td>
-                  <td><h3><div style="float:right;">{{grandTotal() | number:2 | currency}}</div></h3></td>
+         <td>&nbsp</td>
+                  <td><h2><div style="margin-top:50px;" class="totalsRight">{{grandTotal() | currency}}</div></h2></td>
 
      </tr>
  </tbody>
 
 
 </table>
-
+        <button class="btn btn-primary" style="float:right;height:60px;width:240px;font-size:24px;margin-bottom:40px;">Place Order</button>
         </div>
 
 

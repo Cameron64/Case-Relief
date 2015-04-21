@@ -256,3 +256,9 @@ NAV
      position:relative;
      top:1px;
  }
+
+ /*Finalize.aspx*/
+ .totalsRight{
+     position:absolute;
+     right:0;
+ }
