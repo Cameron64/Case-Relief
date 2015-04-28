@@ -56,4 +56,8 @@ public partial class Default2 : System.Web.UI.Page
         myConnection.Close();
         return Records_Found;
     }
+    public void btn_click(object sender, EventArgs e)
+    {
+        Response.Redirect("ThankYou.aspx");
+    }
 }

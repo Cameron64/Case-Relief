@@ -54,7 +54,7 @@
          <td><h3>Shipping:</h3></td>
          <td>&nbsp</td>
          <td style="padding:0;"><h3><div class="totalsRight">
-             <select style="height:50px;width:225px;" ng-model="shipping" ng-options="type.name for type in prices">
+             <select ng-init="initDropdown()" style="height:50px;width:225px;" ng-model="shipping" ng-options="type.name for type in prices">
       </select>
                  </div></h3></td>
      </tr>
@@ -70,7 +70,7 @@
 
 
 </table>
-        <button class="btn btn-primary" style="float:right;height:60px;width:240px;font-size:24px;margin-bottom:40px;">Place Order</button>
+        <asp:Button runat="server" class="btn btn-primary" style="float:right;height:60px;width:240px;font-size:24px;margin-bottom:40px;" onclick="btn_click" Text="Place Order"></asp:Button>
         </div>
 
 

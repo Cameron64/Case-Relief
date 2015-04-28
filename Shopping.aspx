@@ -7,7 +7,7 @@
         <script>
             var dr = "<%= final %>";
 </script>
-            <div style="position:relative;float:left;width:20%;height:600px; top:50px; border:1px solid black">
+            <div style="position:relative;float:left;width:20%;height:500px; top:50px; border:1px solid black;border-radius: 25px;">
                <form>
   <div class="form-group" style="margin:5px;">
                  <h3>Filters</h3>
@@ -39,8 +39,8 @@
                     </form>
             </div>
             <div class="container-fluid" style="bottom:0;width:80%;margin:0;float:right;">
-        <div ng-repeat="data in dataRecieved | filter:productSearch | orderBy:sortBy" ng-show="data.Rating >= selectedStars">
-            <div style="position:relative;height:10%;width:45%;margin-left:3%;margin-top:3%;background-color:lightblue;float:left;top:0;border:1px solid black">
+        <div class="animate-repeat" ng-repeat="data in dataRecieved | filter:productSearch | orderBy:sortBy" ng-show="data.Rating >= selectedStars">
+            <div  style="position:relative;height:10%;width:45%;margin-left:3%;margin-top:3%;background-color:lightblue;float:left;top:0;border:1px solid black;border-radius: 25px;">
            <div style="height:100%;width:100%;margin-left:10px;">
                 <h2> {{data.Name}} </h2>
            
@@ -50,14 +50,14 @@
                 </div>
                 <br />
                
-                <img style="position:relative;height:300px;max-width:90%;margin:10px;" align="middle" ng-src="img/phones/{{data.Photo}}" />
+                <img style="position:relative;height:300px;max-width:90%;margin:10px;border-radius: 25px;" align="middle" ng-src="img/phones/{{data.Photo}}" />
                 
                <h4> {{"In Stock: " + data.InStock}}</h4>
                 
                <h4> {{"Number In Stock: " + data.NumInStock}}</h4>
         </div>
-                            <button type="button" class="btn btn-primary" ng-hide="getBasketIndex($storage.products,data.Name) >= 0"  ng-click="$storage.products.push(data);$storage.products[getBasketIndex($storage.products,data.Name)]['Quantity'] = 1;" style="float:right;position:relative;margin:5px;">Add to Cart</button>
-                            <button type="button" class="btn btn-primary" ng-show="getBasketIndex($storage.products,data.Name) >= 0"  ng-click="$storage.products.splice(getBasketIndex($storage.products,data.Name),1);" style="float:right;position:relative;margin:5px;">Remove to Cart</button>
+                            <button type="button" class="btn btn-primary" ng-hide="getBasketIndex($storage.products,data.Name) >= 0"  ng-click="$storage.products.push(data);$storage.products[getBasketIndex($storage.products,data.Name)]['Quantity'] = 1;" style="float:right;position:relative;margin:5px;margin-right: 14px; margin-bottom: 8px;">Add to Cart</button>
+                            <button type="button" class="btn btn-primary" ng-show="getBasketIndex($storage.products,data.Name) >= 0"  ng-click="$storage.products.splice(getBasketIndex($storage.products,data.Name),1);" style="float:right;position:relative;margin:5px;margin-right: 14px; margin-bottom: 8px;">Remove to Cart</button>
 
                 </div>
 

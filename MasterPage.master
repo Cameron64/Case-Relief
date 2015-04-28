@@ -30,6 +30,7 @@
     <script src="js/angular-animate.min.js"></script>
 <script src="js/TweenMax.min.js"></script>
     <script src="js/magic.js"></script>
+    <link type="text/css" href="css/animate.css" rel="stylesheet" />
 
     <title>Case Relief</title>
     <asp:ContentPlaceHolder id="head" runat="server">

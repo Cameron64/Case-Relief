@@ -12,12 +12,56 @@ public partial class PassProducts : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["authenticated"] == "true")
+        {
+            String[] S_Info;
+            S_Info = Get_Shipping();
+            String Address;
+            String City;
+            String State;
+
+            Address = S_Info[1];
+            City = S_Info[2];
+            State = S_Info[3];
+
+            FAddress.Text = Address;
+            FCity.Text = City;
+            FState.Text = State;
+        }
+        else
+        { Response.Redirect("Authenticate.aspx"); }
 
     }
 
-    [WebMethod]
-    public static string Process(List<RootObject> Product)
+
+
+    public String[] Get_Shipping()
     {
+        String Email = Session["SessionEmail"].ToString();
+        SqlDataReader MyReader;
+        String[] Records_Found = new String[4];
+
+        SqlConnection myConnection = new SqlConnection(SqlDataSource2.ConnectionString);
+        SqlCommand myCommand = new SqlCommand(SqlDataSource2.SelectCommand);
+        myCommand.Connection = myConnection;
+        myCommand.Parameters.AddWithValue("@Email", Email);
+        myConnection.Open();
+        MyReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+        while (MyReader.Read())
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                Records_Found[i] = MyReader.GetString(i).Trim();
+            }
+        }
+        myConnection.Close();
+        return Records_Found;
+    }
+
+    [WebMethod]
+    public static object Process(List<RootObject> Product)
+    {
+        build response = new build();
         PassProducts pass = new PassProducts();
         string[] names = new string[Product.Count];
         int[] quantities = new int[Product.Count];
@@ -62,15 +106,25 @@ public partial class PassProducts : System.Web.UI.Page
 
             if (Record_Found)
             {
-                build += "Name: " + names[j] + " ";
-                build += "Quantity: " + quantities[j].ToString() + " ,";
+                response.Product += "Name: " + names[j] + " ";
+                response.Quantity += quantities[j];
             }
             else
             {
-                return build = "0";
+                response.Product = names[j];
+                response.Quantity = quantities[j];
+                response.Success = false;
+                return response;
             }
         }
-        return build;
+        response.Success = true;
+        return response;
+    }
+    public class build
+    {
+        public string Product { get; set; }
+        public int Quantity { get; set; }
+        public bool Success { get; set; }
     }
     public class RootObject
     {
@@ -113,5 +167,9 @@ public partial class PassProducts : System.Web.UI.Page
 
         myConnection.Close();
         return Record_Found;
+    }
+    public void To_Shopping(object sender, System.EventArgs e)
+    {
+        Response.Redirect("Shopping.aspx");
     }
 }

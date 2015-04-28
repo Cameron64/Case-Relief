@@ -118,7 +118,6 @@
     app.controller('shopping', function ($scope,$window,$filter,$localStorage) {
         $scope.dataRecieved1 = transcribe1($window.dr);
         $scope.dataRecieved = JSON.parse($scope.dataRecieved1);
-       // console.log($scope.dataRecieved1);
         $scope.dataLength = $scope.dataRecieved.length;
        
         function transcribe1(array) {
@@ -160,20 +159,19 @@
     app.controller('cart', function ($scope, $localStorage) {
 
         $scope.$storage = $localStorage.$default({
-            products: []
-            
-
+            products: [],
+            shipping: {}
         });
-       
+
         $scope.prices = [{ name: 'Standard ($3.15)', price: 3.15 }, { name: 'Expedited ($5.49)', price: 5.49 }];
         $scope.subTotal = function () {
             var total = $scope.total($scope.$storage.products);
             return total / 8.25 + total;
         }
         $scope.grandTotal = function () {
-            console.log($scope.subTotal() + $scope.shipping);
             return $scope.subTotal() + $scope.shipping.price;
         }
+        
          $scope.getBasketIndex = function (arr, value) {
 
             for (var i = 0, iLen = arr.length; i < iLen; i++) {
@@ -181,9 +179,11 @@
                 if (arr[i].Name == value) return i;
             }
          }
-         for (var i = 0; i < $scope.prices.length; i++) {
-             if ($scope.prices[i].name == 'Standard ($3.15)') {
-                 $scope.shipping = $scope.prices[i];
+         $scope.initDropdown = function () {
+             for (var i = 0; i < $scope.prices.length; i++) {
+                 if ($scope.prices[i].name == 'Standard ($3.15)') {
+                     $scope.shipping = $scope.prices[i];
+                 }
              }
          }
          $scope.toPay = function () {
@@ -201,14 +201,16 @@
              return returnTotal;
          }
         
+             $scope.$watch('shipping', function(new_val, old_val){
+                 $scope.$storage.shipping = new_val;
+             });
+         
     });
 
     app.controller('bill', function ($scope, $localStorage) {
 
 
     });
-
-
 
     app.filter('range', function () {
         return function (input, total) {
@@ -218,16 +220,12 @@
             return input;
         };
     });
-
-    function Main($scope) {
-    }
-    
+   
     app.controller('billing',['$scope','$window', function ($scope,$window) {
        
     }]);
     app.controller('thankYou', ['$scope', '$window', '$localStorage', function ($scope, $window,$localStorage) {
         $scope.$storage = $localStorage.$default({
-            products: []
         });
         $scope.response = "";
         $scope.getService = function () {
@@ -240,12 +238,41 @@
                 dataType: "json",
                 async: true,
                 cache: false,
-                success: function (e, f) { console.log(e); console.log(f); },
+                success: function (e) {
+                    console.log(e.d.Success);
+                    if (e.d.Success) {
+                        
+                    } else {
+                        $scope.response = "The product quantity requested cannot be supplied. Please retry your order.\n Product: "
+                        + e.d.Product + " Quantity: " + e.d.Quantity;
+                        $scope.showMain = true;
+                        $scope.showRedirect = true;
+                        $scope.$apply();
+                        
+                    }
+                },
                 error: function (req,e) { $scope.response = "Fail"; console.log( req); }
             })
             return false;
 
         };
-    
+      
+        $scope.subTotal = function () {
+            var total = $scope.total($scope.$storage.products);
+            return total / 8.25 + total;
+        }
+        $scope.finalGrandTotal = function () {
+            return $scope.subTotal() + $scope.$storage.shipping.price;
+        }
+      
+        $scope.total = function (arr) {
+            var returnTotal = 0;
+            for (var i = 0, iLen = arr.length; i < iLen; i++) {
+
+                returnTotal += arr[i].Price * arr[i].Quantity;
+            }
+            return returnTotal;
+        }
+
     }]);
 })();
