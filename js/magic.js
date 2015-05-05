@@ -95,9 +95,9 @@
             controller: function ($scope) {
 
                 $scope.reviews = [
-                    { name: "CNN", photo: "img/reviews/cnn.jpg", title: "Charity Will Never be the Same", review: "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Ipsum " },
-                    { name: "BBC News", photo: "img/reviews/bbc.jpg", title: "Charity Will Never be the Same", review: "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum  Ipsum " },
-                    { name: "Forbes Magazine", photo: "img/reviews/forbes.jpg", title: "Charity Will Never be the Same", review: "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsumem Ipsum " }
+                    { name: "CNN", photo: "img/reviews/cnn.jpg", title: "CNN", review: "The new company Case Relief, founded by Mark Fuertes, Cameron Hernandez, and Thomas Pickering, is getting worldwide attention. They are providing protection of our technological goods, while also providing funds to help those in need. “Prepers” or people preparing for unfortunate events, have rushed to this company for their tech protection goods." },
+                    { name: "BBC News", photo: "img/reviews/bbc.jpg", title: "BBC", review: "After the last unfortunate event that wreaked havoc on Earth, three entrepreneurs have taken it upon themselves to provide protection, with different type of cases for different types of technology, to smart phones and tablets, while also giving the money to charity. These gifts are to help all of those who need assistance if they find themselves in a tight situation. If you are looking for good protection and want to help those in need, get Case Relief." },
+                    { name: "Forbes Magazine", photo: "img/reviews/forbes.jpg",title: "Forbes", review: "A young company that aims to help those in need, and becoming very popular. They have set record sales for their short time in business, which would make them very attractive to future investors. The downturn is that they are not making any money. Instead, they donate their earning to other organizations to help those in need. Could this a huge mistakes for the company’s survival? Might investors want to help this company reach farther out and convince them to become profitable?" }
 
 
                 ]
@@ -244,9 +244,10 @@
                         
                     } else {
                         $scope.response = "The product quantity requested cannot be supplied. Please retry your order.\n Product: "
-                        + e.d.Product + " Quantity: " + e.d.Quantity;
-                        $scope.showMain = true;
+                        + e.d.Product + " Quantity: " + e.d.Quantity + "It has been removed from your basket";
+                        $scope.hideMain = true;
                         $scope.showRedirect = true;
+                        $scope.$storage.products.splice($scope.getBasketIndex($scope.$storage.products, e.d.Product),1)
                         $scope.$apply();
                         
                     }
@@ -272,6 +273,14 @@
                 returnTotal += arr[i].Price * arr[i].Quantity;
             }
             return returnTotal;
+        }
+
+        $scope.getBasketIndex = function (arr, value) {
+
+            for (var i = 0, iLen = arr.length; i < iLen; i++) {
+
+                if (arr[i].Name == value) return i;
+            }
         }
 
     }]);

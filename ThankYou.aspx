@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
      <div class="container-fluid" style="background-color:white;width:80%;bottom:0;position:relative;" ng-controller="thankYou">
-         <h1 style="text-align:center;border-bottom:1px solid black">INVOICE</h1>
+         <h1 ng-hide="hideMain" style="text-align:center;border-bottom:1px solid black">INVOICE</h1>
             <div ng-bind="response" ng-init="getService()"></div>
                                  <asp:Button runat="server" OnClick="To_Shopping" class="btn btn-primary" ng-show="showRedirect" style="float:right;margin:5px;" Text="Back to shopping"></asp:Button>
 
